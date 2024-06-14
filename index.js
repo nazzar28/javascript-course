@@ -1,29 +1,34 @@
-const checkBox = document.getElementById("checkbox");
-const visaBtn = document.getElementById("visaBtn");
-const masterCard = document.getElementById("masterCard");
-const payPalBtn = document.getElementById("payPalBtn");
-const submit = document.getElementById("submit");
-const subResult = document.getElementById("subResult");
-const paymentResult = document.getElementById("paymentResult");
+const min=1;
+const max=100;
 
-submit.onclick = function (){
-     if(checkBox.checked){
-         subResult.textContent = 'u subscribed';
-     }else{
-         subResult.textContent = 'u not subscribed';
-     }
+const answer= Math.floor(Math.random()*(max-min+1))+min;
 
-     if(visaBtn.checked){
-         paymentResult.textContent = 'u paying with visa';
-     }else if(masterCard.checked){
-         paymentResult.textContent = 'u paying with masterCard';
-     }else if(payPalBtn.checked){
-         paymentResult.textContent = 'u paying with payPalBtn';
-     }else{
-         paymentResult.textContent = 'u must select a payment type';
-     }
+let attempts=0;
+let guess;
+let running=true;
+
+while(running){
+
+    guess=window.prompt(`Guess a number between ${min}-${max}`);
+    guess=Number(guess);
+
+    if(isNaN(guess)){
+        window.alert('Enter a valid number');
+    }else if(guess<min || guess>max){
+        window.alert('Enter a valid number');
+    }else{
+        attempts++;
+        if(guess < answer){
+            window.alert('Low. Try again');
+        }else if(guess>answer){
+            window.alert('High. Try again');
+        }else{
+            window.alert(`Correct. Answer was ${answer}. It took u 
+            ${attempts} attempts `);
+            running=false;
+        }
+    }
 }
-
 
 
 
